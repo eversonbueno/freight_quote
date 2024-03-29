@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  crawler_project:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: freight_quote_php
+    ports:
+      - "8080:80"
+      #      - "443:443"
+    volumes:
+      - .:/var/www/html/
+    links:
+      - db
+
+  db:
+    image: mysql:latest
+    container_name: freight_quote_mysql
+    #    ports:
+    #      - "3307:3306"
+    volumes:
+      - /var/libs/mysql
+    environment:
+      - MYSQL_DATABASE=api_freight_quote
+      - MYSQL_ROOT_PASSWORD=Angelica@1714
