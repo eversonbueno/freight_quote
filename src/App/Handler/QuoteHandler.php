@@ -6,6 +6,9 @@ namespace App\Handler;
 
 use App\Entity\Validate\CarrierValidate;
 use App\Service\QuoteService;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Entity;
+use GuzzleHttp\Client;
 use JMS\Serializer\SerializerBuilder;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\ServiceManager\ServiceManager;
@@ -87,10 +90,25 @@ class QuoteHandler implements RequestHandlerInterface
             $context['simulation_type'] = [0];
             $context['returns'] = $returns;
 
-            return new JsonResponse(['data' => $data, 'context' => $context]);
+            $responseBody = $this->post('https://sp.freterapido.com/api/v3/quote/simulate', [
+                'headers' => ['Content-Type' => 'Application/JSON', 'Accept' => 'Application/JSON'],
+                $context
+            ]);
+
+            return new JsonResponse(['data' => $data, 'context' => $context, 'response_body' => $responseBody]);
 
         } catch (\Exception $e) {
             return new JsonResponse(['error' => $e->getMessage(), 'tracing_error' => $e->getTraceAsString()]);
         }
+    }
+
+    public function post(string $uri, array $payload)
+    {
+        $client = new Client();
+
+        $response = $client->request('POST', $uri, ['shipper' => $payload]);
+        $responseBody = $response->getBody()->getContents();
+
+        return $responseBody;
     }
 }
