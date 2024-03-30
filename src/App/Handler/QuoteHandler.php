@@ -26,6 +26,28 @@ class QuoteHandler implements RequestHandlerInterface
 
             $data = \GuzzleHttp\json_decode($request->getBody(), true);
 
+            $price = 0;
+            $dispatchersVolume = [];
+            foreach ($data['volumes'] as $volume) {
+                $price += $volume['price'];
+                $dispatchersVolume[] = [
+                    "amount" => $volume['amount'],
+                    "amount_volumes" => count($data['volumes']),
+                    "category" => (string)$volume['category'],
+                    "sku" => $volume['sku'],
+                    "tag" => "",
+                    "description" => "",
+                    "height" => (float)$volume['height'],
+                    "width" => (float)$volume['width'],
+                    "length" => (float)$volume['length'],
+                    "unitary_price" => (float)$volume['price'],
+                    "unitary_weight" => (float)$volume['price']/1000,
+                    "consolidate" => false,
+                    "overlaid" => false,
+                    "rotate" => false
+                ];
+            }
+
             $shipper = [
                 'registered_number' => self::CNPJ,
                 'token' => self::TOKEN,
@@ -36,31 +58,14 @@ class QuoteHandler implements RequestHandlerInterface
                 "type" => 0,
                 "registered_number" => self::CNPJ,
                 "state_inscription" => "",
-                "country" => "",
-                "zipcode" => 0
-            ];
-
-            $dispatchersVolume[] = [
-                "amount" => 0,
-                "amount_volumes" => 0,
-                "category" => "",
-                "sku" => "",
-                "tag" => "",
-                "description" => "",
-                "height" => 0.0,
-                "width" => 0.0,
-                "length" => 0.0,
-                "unitary_price" => 0.0,
-                "unitary_weight" => 0.0,
-                "consolidate" => false,
-                "overlaid" => false,
-                "rotate" => false
+                "country" => "BRA",
+                "zipcode" => (int)$data['recipient']['address']['zipcode']
             ];
 
             $dispatchers[] = [
-                "registered_number" => "",
-                "zipcode" => 0,
-                "total_price" => 0.0,
+                "registered_number" => self::CNPJ,
+                "zipcode" => (int)$data['recipient']['address']['zipcode'],
+                "total_price" => (float)$price,
                 "volumes" => $dispatchersVolume
             ];
 
@@ -75,7 +80,7 @@ class QuoteHandler implements RequestHandlerInterface
             $context['recipient'] = $recipient;
             $context['dispatchers'] = $dispatchers;
             $context['channel'] = "";
-            $context['filter'] = 0;
+            $context['filter'] = 1;
             $context['limit'] = 0;
             $context['identification'] = "";
             $context['reverse'] = false;
