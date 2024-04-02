@@ -4,19 +4,20 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
+class ComposerStaticInit1501da222f01a062e073a5eac841889b
 {
     public static $files = array (
         'c9d07b32a2e02bc0fc582d4f0c1b56cc' => __DIR__ . '/..' . '/laminas/laminas-servicemanager/src/autoload.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
+        'c2aad8997a98dfc4771bdbffea3d62b7' => __DIR__ . '/..' . '/laminas/laminas-code/polyfill/ReflectionEnumPolyfill.php',
         '3f8ee9969da604d0f15c841b77b11450' => __DIR__ . '/..' . '/laminas/laminas-stratigility/src/functions/double-pass-middleware.php',
         'ee5523a5d51d6d51030227439db1ef74' => __DIR__ . '/..' . '/laminas/laminas-stratigility/src/functions/host.php',
         '5f6e29ca023a0bdefa2476adb465d527' => __DIR__ . '/..' . '/laminas/laminas-stratigility/src/functions/middleware.php',
@@ -28,7 +29,6 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        'c2aad8997a98dfc4771bdbffea3d62b7' => __DIR__ . '/..' . '/laminas/laminas-code/polyfill/ReflectionEnumPolyfill.php',
         '12015786a5f2990d4244c42435db1ba0' => __DIR__ . '/..' . '/mezzio/mezzio/src/constants.php',
         '792a652af1b56b529053947cf6432b79' => __DIR__ . '/..' . '/mezzio/mezzio/src/constants.legacy.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -76,7 +76,9 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
             'Symfony\\Contracts\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Validator\\' => 28,
             'Symfony\\Component\\String\\' => 25,
+            'Symfony\\Component\\Stopwatch\\' => 28,
             'Symfony\\Component\\Process\\' => 26,
+            'Symfony\\Component\\Filesystem\\' => 29,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Console\\' => 26,
             'StellaMaris\\Clock\\' => 18,
@@ -91,6 +93,7 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
             'Psr\\Container\\' => 14,
             'Psr\\Clock\\' => 10,
             'Psr\\Cache\\' => 10,
+            'ProxyManager\\' => 13,
             'PhpParser\\' => 10,
             'PackageVersions\\' => 16,
             'PHPStan\\PhpDocParser\\' => 21,
@@ -101,11 +104,18 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
             'Mezzio\\Template\\' => 16,
             'Mezzio\\Router\\' => 14,
             'Mezzio\\Helper\\' => 14,
+            'Mezzio\\Authentication\\OAuth2\\' => 29,
+            'Mezzio\\Authentication\\' => 22,
             'Mezzio\\' => 7,
             'Metadata\\' => 9,
         ),
         'L' => 
         array (
+            'League\\Uri\\' => 11,
+            'League\\OAuth2\\Server\\' => 21,
+            'League\\Event\\' => 13,
+            'Lcobucci\\JWT\\' => 13,
+            'Lcobucci\\Clock\\' => 15,
             'Laminas\\View\\' => 13,
             'Laminas\\Validator\\' => 18,
             'Laminas\\Uri\\' => 12,
@@ -156,6 +166,7 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
         array (
             'Doctrine\\Persistence\\' => 21,
             'Doctrine\\ORM\\' => 13,
+            'Doctrine\\Migrations\\' => 20,
             'Doctrine\\Laminas\\Hydrator\\' => 26,
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Inflector\\' => 19,
@@ -168,6 +179,7 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
             'Doctrine\\Common\\' => 16,
             'DoctrineORMModule\\' => 18,
             'DoctrineModule\\' => 15,
+            'Defuse\\Crypto\\' => 14,
             'DeepCopy\\' => 9,
         ),
         'C' => 
@@ -250,9 +262,17 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
         array (
             0 => __DIR__ . '/..' . '/symfony/string',
         ),
+        'Symfony\\Component\\Stopwatch\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/stopwatch',
+        ),
         'Symfony\\Component\\Process\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/process',
+        ),
+        'Symfony\\Component\\Filesystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/filesystem',
         ),
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
@@ -300,6 +320,10 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
         ),
+        'ProxyManager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofphp/proxy-manager-lts/src/ProxyManager',
+        ),
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
@@ -329,6 +353,14 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
         array (
             0 => __DIR__ . '/..' . '/mezzio/mezzio-helpers/src',
         ),
+        'Mezzio\\Authentication\\OAuth2\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mezzio/mezzio-authentication-oauth2/src',
+        ),
+        'Mezzio\\Authentication\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mezzio/mezzio-authentication/src',
+        ),
         'Mezzio\\' => 
         array (
             0 => __DIR__ . '/..' . '/mezzio/mezzio/src',
@@ -336,6 +368,27 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
         'Metadata\\' => 
         array (
             0 => __DIR__ . '/..' . '/jms/metadata/src',
+        ),
+        'League\\Uri\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/uri-interfaces/src',
+            1 => __DIR__ . '/..' . '/league/uri/src',
+        ),
+        'League\\OAuth2\\Server\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/oauth2-server/src',
+        ),
+        'League\\Event\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/event/src',
+        ),
+        'Lcobucci\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lcobucci/jwt/src',
+        ),
+        'Lcobucci\\Clock\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lcobucci/clock/src',
         ),
         'Laminas\\View\\' => 
         array (
@@ -490,6 +543,10 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
         array (
             0 => __DIR__ . '/..' . '/doctrine/orm/src',
         ),
+        'Doctrine\\Migrations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/migrations/lib/Doctrine/Migrations',
+        ),
         'Doctrine\\Laminas\\Hydrator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/doctrine-laminas-hydrator/src',
@@ -538,6 +595,10 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
         'DoctrineModule\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/doctrine-module/src',
+        ),
+        'Defuse\\Crypto\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/defuse/php-encryption/src',
         ),
         'DeepCopy\\' => 
         array (
@@ -1204,9 +1265,9 @@ class ComposerStaticInitdceea1300c28dd999d0840f4d86f492e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitdceea1300c28dd999d0840f4d86f492e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitdceea1300c28dd999d0840f4d86f492e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitdceea1300c28dd999d0840f4d86f492e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit1501da222f01a062e073a5eac841889b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit1501da222f01a062e073a5eac841889b::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit1501da222f01a062e073a5eac841889b::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -1,0 +1,84 @@
+{
+    "name": "mezzio/mezzio-authentication-oauth2",
+    "description": "OAuth2 (server) authentication middleware for Mezzio and PSR-7 applications.",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "laminas",
+        "mezzio",
+        "authentication",
+        "http",
+        "middleware",
+        "oauth2",
+        "psr-7"
+    ],
+    "homepage": "https://mezzio.dev",
+    "support": {
+        "docs": "https://docs.mezzio.dev/mezzio-authentication-oauth2/",
+        "issues": "https://github.com/mezzio/mezzio-authentication-oauth2/issues",
+        "source": "https://github.com/mezzio/mezzio-authentication-oauth2",
+        "rss": "https://github.com/mezzio/mezzio-authentication-oauth2/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "platform": {
+            "php": "8.0.99"
+        }
+    },
+    "extra": {
+        "laminas": {
+            "config-provider": "Mezzio\\Authentication\\OAuth2\\ConfigProvider"
+        }
+    },
+    "require": {
+        "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
+        "league/oauth2-server": "^8.3.5",
+        "mezzio/mezzio-authentication": "^1.0",
+        "psr/container": "^1.0 || ^2.0",
+        "psr/http-factory": "^1.0",
+        "psr/http-message": "^1.0.1",
+        "psr/http-server-middleware": "^1.0",
+        "webmozart/assert": "^1.10"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "~2.4.0",
+        "laminas/laminas-diactoros": "^2.20.0",
+        "laminas/laminas-servicemanager": "^3.19",
+        "phpunit/phpunit": "^9.5.26",
+        "psalm/plugin-phpunit": "^0.18.0",
+        "vimeo/psalm": "^5.0"
+    },
+    "conflict": {
+        "container-interop/container-interop": "<1.2.0",
+        "lcobucci/jwt": "<4",
+        "zendframework/zend-expressive-authentication-oauth2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mezzio\\Authentication\\OAuth2\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MezzioTest\\Authentication\\OAuth2\\": "test/"
+        }
+    },
+    "bin": [
+        "bin/generate-oauth2-keys"
+    ],
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+        "static-analysis": "psalm --shepherd --stats"
+    }
+}

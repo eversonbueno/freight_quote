@@ -3,7 +3,14 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Carrier
+ *
+ * @ORM\Table(name="carrier")
+ * @ORM\Entity(repositoryClass="App\Repository\CarrierRepository")
+ */
 class Carrier
 {
     /**
@@ -13,35 +20,35 @@ class Carrier
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=100, nullable=false)
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="service", type="string", length=100, nullable=false)
      */
-    private $service;
+    private string $service;
 
     /**
      * @var int
      *
      * @ORM\Column(name="deadline", type="integer", length=10, nullable=false)
      */
-    private $deadline;
+    private int $deadline;
 
     /**
      * @var float
      *
      * @ORM\Column(name="price", type="decimal", precision=10, scale=2, nullable=false)
      */
-    private $price;
+    private float $price;
 
     /**
      * @return int

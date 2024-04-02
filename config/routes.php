@@ -41,4 +41,5 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->get('/', App\Handler\HomePageHandler::class, 'home');
     $app->get('/api/ping', App\Handler\PingHandler::class, 'api.ping');
     $app->post('/api/quote', \App\Handler\QuoteHandler::class, 'api.quote');
+    $app->get('/api/metrics', \App\Handler\MetricsHandler::class, 'api.metrics');
 };
