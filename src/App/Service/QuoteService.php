@@ -96,15 +96,15 @@ class QuoteService
         $context['returns'] = $returns;
 
         $responseBody = $this->post($context);
-        foreach ($responseBody['carrier'] as $response) {
-            $carrier = new Carrier();
-            $carrier->setName((string)$response['name']);
-            $carrier->setService((string)$response['service']);
-            $carrier->setDeadline((int)$response['deadline']);
-            $carrier->setPrice((float)$response['price']);
-
-            $this->save($carrier);
-        }
+//        foreach ($responseBody['carrier'] as $response) {
+//            $carrier = new Carrier();
+//            $carrier->setName((string)$response['name']);
+//            $carrier->setService((string)$response['service']);
+//            $carrier->setDeadline((int)$response['deadline']);
+//            $carrier->setPrice((float)$response['price']);
+//
+//            $this->save($carrier);
+//        }
 
         return $responseBody;
     }
@@ -112,6 +112,7 @@ class QuoteService
     /**
      * @param array $payload
      * @return \array[][]
+     * @throws GuzzleException
      */
     public function post(array $payload)
     {
@@ -125,27 +126,27 @@ class QuoteService
             ]
         ]);
 
-        $response = [
-            'carrier' => [
-                [
-                    'name' => 'EXPRESSO FR',
-                    'service' => 'Rodoviário',
-                    'deadline' => '3',
-                    'price' => 17
-                ],
-                [
-                    'name' => 'Correios',
-                    'service' => 'SEDEX',
-                    'deadline' => 1,
-                    'price' => 20.99
-                ]
-            ]
-        ];
+//        $response = [
+//            'carrier' => [
+//                [
+//                    'name' => 'EXPRESSO FR',
+//                    'service' => 'Rodoviário',
+//                    'deadline' => '3',
+//                    'price' => 17
+//                ],
+//                [
+//                    'name' => 'Correios',
+//                    'service' => 'SEDEX',
+//                    'deadline' => 1,
+//                    'price' => 20.99
+//                ]
+//            ]
+//        ];
+//
+//        return $response;
 
-        return $response;
-
-//        $response = $client->request('POST', '', ['json' => $payload]);
-//        return \GuzzleHttp\json_decode($response->getBody(), true);
+        $response = $client->request('POST', '', [\GuzzleHttp\RequestOptions::JSON => json_decode($payload, true)]);
+        return \GuzzleHttp\json_decode($response->getBody(), true);
     }
 
     /**

@@ -21,7 +21,8 @@ return [
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories' => [
             // Fully\Qualified\ClassName::class => Fully\Qualified\FactoryName::class,
-            \Doctrine\ORM\EntityManager::class => \App\Doctrine\Factory\DoctrineORMFactory::class,
+            Doctrine\ORM\EntityManager::class => \App\Doctrine\Factory\DoctrineORMFactory::class,
+            \App\Handler\AliveHandler::class => \App\Handler\AliveHandlerFactory::class,
             \App\Handler\QuoteHandler::class => \App\Handler\QuoteHandlerFactory::class,
             \App\Handler\MetricsHandler::class => \App\Handler\MetricsHandlerFactory::class,
             \App\Service\QuoteService::class => \App\Service\Factory\ServiceFactory::class

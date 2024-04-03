@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Handler\AliveHandler;
 use App\Handler\MetricsHandler;
 use App\Handler\QuoteHandler;
 use App\Handler\QuoteHandlerFactory;
@@ -39,11 +40,13 @@ class ConfigProvider
         return [
             'invokables' => [
                 Handler\PingHandler::class => Handler\PingHandler::class,
+                Handler\AliveHandler::class => Handler\AliveHandler::class,
                 Handler\QuoteHandler::class => Handler\QuoteHandler::class,
                 Handler\MetricsHandler::class => Handler\MetricsHandler::class
             ],
             'factories'  => [
                 Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
+                Handler\AliveHandler::class => Handler\AliveHandlerFactory::class,
                 Handler\QuoteHandler::class => Handler\QuoteHandlerFactory::class,
                 Handler\MetricsHandler::class => Handler\MetricsHandlerFactory::class,
                 Service\QuoteService::class => Service\Factory\ServiceFactory::class

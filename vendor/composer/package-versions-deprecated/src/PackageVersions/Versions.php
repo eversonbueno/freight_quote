@@ -119,6 +119,8 @@ final class Versions
   'psr/simple-cache' => '1.0.1@408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
   'ralouphie/getallheaders' => '3.0.3@120b605dfeb996808c31b6477290a714d356e822',
   'stella-maris/clock' => '0.1.7@fa23ce16019289a18bb3446fdecd45befcdd94f8',
+  'symfony/cache' => 'v4.4.48@3b98ed664887ad197b8ede3da2432787212eb915',
+  'symfony/cache-contracts' => 'v2.5.2@64be4a7acb83b6f2bf6de9a02cee6dad41277ebc',
   'symfony/console' => 'v5.4.36@39f75d9d73d0c11952fdcecf4877b4d0f62a8f6e',
   'symfony/deprecation-contracts' => 'v3.0.2@26954b3d62a6c5fd0ea8a2a00c0353a14978d05c',
   'symfony/event-dispatcher' => 'v6.0.19@2eaf8e63bc5b8cefabd4a800157f0d0c094f677a',
@@ -137,6 +139,7 @@ final class Versions
   'symfony/string' => 'v6.0.19@d9e72497367c23e08bf94176d2be45b00a9d232a',
   'symfony/translation-contracts' => 'v2.5.2@136b19dd05cdf0709db6537d058bcab6dd6e2dbe',
   'symfony/validator' => 'v4.4.48@54781a4c41efbd283b779110bf8ae7f263737775',
+  'symfony/var-exporter' => 'v5.4.35@abb0a151b62d6b07e816487e20040464af96cae7',
   'webimpress/safe-writer' => '2.2.0@9d37cc8bee20f7cb2f58f6e23e05097eab5072e6',
   'webmozart/assert' => '1.11.0@11cb2199493b2f8a3b53e7f19068fc6aac760991',
   'filp/whoops' => '2.15.4@a139776fa3f5985a50b509f2a02ff0f709d2a546',
@@ -151,7 +154,7 @@ final class Versions
   'phpunit/php-text-template' => '2.0.4@5da5f67fc95621df9ff4c4e5a84d6a8a2acf7c28',
   'phpunit/php-timer' => '5.0.3@5a63ce20ed1b5bf577850e2c4e87f4aa902afbd2',
   'phpunit/phpunit' => '9.6.18@32c2c2d6580b1d8ab3c10b1e9e4dc263cc69bb04',
-  'roave/security-advisories' => 'dev-master@50e5d68481639edd6ec8ffc6d7a2ebd3465c6399',
+  'roave/security-advisories' => 'dev-master@8f58125e25237ea649fd369348ca7c2a42337f86',
   'sebastian/cli-parser' => '1.0.2@2b56bea83a09de3ac06bb18b92f068e60cc6f50b',
   'sebastian/code-unit' => '1.0.8@1fc9f64c0927627ef78ba436c9b17d967e68e120',
   'sebastian/code-unit-reverse-lookup' => '2.0.3@ac91f01ccec49fb77bdc6fd1e548bc70f7faa3e5',
@@ -170,7 +173,7 @@ final class Versions
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'symfony/process' => 'v6.0.19@2114fd60f26a296cc403a7939ab91478475a33d4',
   'theseer/tokenizer' => '1.2.3@737eda637ed5e28c3413cb1ebe8bb52cbf1ca7a2',
-  'mezzio/mezzio-skeleton' => 'dev-main@334704b50ce5068531fdfd1fb35f38bcb7e08139',
+  'mezzio/mezzio-skeleton' => 'dev-main@89fa86d25610a6414ceca0b630634b3f5c406263',
 );
 
     private function __construct()

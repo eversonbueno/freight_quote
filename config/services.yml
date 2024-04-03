@@ -1,0 +1,11 @@
+services:
+  # Definición del servicio EntityManager
+  App\Doctrine\DoctrineORMFactory:
+    autowire: false
+
+  # Configuración del EntityManager
+  Doctrine\ORM\EntityManager:
+    factory: ['@App\Doctrine\Factory\DoctrineORMFactory', 'createEntityManager']
+    arguments:
+      $connection: '@doctrine.dbal.default_connection'
+      $metadataDirs: ['%doctrine.orm.metadata_dirs%']
