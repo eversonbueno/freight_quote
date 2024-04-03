@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Carrier
  *
+ * @ORM\Entity
  * @ORM\Table(name="carrier")
- * @ORM\Entity(repositoryClass="App\Repository\CarrierRepository")
  */
 class Carrier
 {

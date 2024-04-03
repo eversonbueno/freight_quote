@@ -55,8 +55,9 @@
         "doctrine/doctrine-orm-module": "^6.1",
         "doctrine/event-manager": "^1.1.1",
         "doctrine/migrations": "^3.3.0",
-        "doctrine/orm": "^2.11.1",
+        "doctrine/orm": "^2.6",
         "doctrine/persistence": "^2.3.0 || ^3.0.0",
+        "doctrine/cache": "^2.2.0",
         "guzzlehttp/guzzle": "~6.0",
         "jms/serializer": "^3.0",
         "laminas/laminas-cli": "^1.0.0",
@@ -75,7 +76,9 @@
         "mezzio/mezzio-helpers": "^5.7",
         "psr/container": "^1.1.2",
         "symfony/console": "^5.4.3 || ^6.0.3",
-        "symfony/validator": "^4.3"
+        "symfony/validator": "^4.3",
+        "symfony/cache": "^v4.4.48",
+        "ext-mysql_xdevapi": "*"
     },
     "require-dev": {
         "laminas/laminas-development-mode": "^3.3.0",

@@ -3,7 +3,7 @@
         'name' => 'mezzio/mezzio-skeleton',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '334704b50ce5068531fdfd1fb35f38bcb7e08139',
+        'reference' => '89fa86d25610a6414ceca0b630634b3f5c406263',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -676,7 +676,7 @@
         'mezzio/mezzio-skeleton' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '334704b50ce5068531fdfd1fb35f38bcb7e08139',
+            'reference' => '89fa86d25610a6414ceca0b630634b3f5c406263',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -842,6 +842,7 @@
             'dev_requirement' => false,
             'provided' => array(
                 0 => '1.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/clock' => array(
@@ -959,6 +960,7 @@
             'dev_requirement' => false,
             'provided' => array(
                 0 => '1.0',
+                1 => '1.0|2.0',
             ),
         ),
         'ralouphie/getallheaders' => array(
@@ -973,7 +975,7 @@
         'roave/security-advisories' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '50e5d68481639edd6ec8ffc6d7a2ebd3465c6399',
+            'reference' => '8f58125e25237ea649fd369348ca7c2a42337f86',
             'type' => 'metapackage',
             'install_path' => null,
             'aliases' => array(),
@@ -1131,6 +1133,30 @@
             'install_path' => __DIR__ . '/../stella-maris/clock',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'symfony/cache' => array(
+            'pretty_version' => 'v4.4.48',
+            'version' => '4.4.48.0',
+            'reference' => '3b98ed664887ad197b8ede3da2432787212eb915',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/cache',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/cache-contracts' => array(
+            'pretty_version' => 'v2.5.2',
+            'version' => '2.5.2.0',
+            'reference' => '64be4a7acb83b6f2bf6de9a02cee6dad41277ebc',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/cache-contracts',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/cache-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0|2.0',
+            ),
         ),
         'symfony/console' => array(
             'pretty_version' => 'v5.4.36',
@@ -1306,6 +1332,15 @@
             'reference' => '54781a4c41efbd283b779110bf8ae7f263737775',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/validator',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/var-exporter' => array(
+            'pretty_version' => 'v5.4.35',
+            'version' => '5.4.35.0',
+            'reference' => 'abb0a151b62d6b07e816487e20040464af96cae7',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/var-exporter',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
