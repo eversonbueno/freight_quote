@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# sudo rm -R -f /tmp/brain/prod/cache/*;
+
+
+CONTAINER_ID=$(docker ps --filter name=freight_quote_php -aq)
+
+docker exec -it $CONTAINER_ID php public/index.php orm:clear-cache:metadata
+docker exec -it $CONTAINER_ID php public/index.php orm:clear-cache:query
+docker exec -it $CONTAINER_ID php public/index.php orm:clear-cache:result
+docker exec -it $CONTAINER_ID php public/index.php orm:generate-proxies

@@ -11,11 +11,10 @@ use Throwable;
 class CarrierRepository extends EntityRepository
 {
     /**
-     * @param $params
      * @return int|array|string
      * @throws Throwable
      */
-    public function search($params): array|int|string
+    public function search(): array|int|string
     {
         try {
             $qb = $this->getEntityManager()->createQueryBuilder();

@@ -12,7 +12,9 @@ use Laminas\Validator\ValidatorChain;
 use Laminas\Validator\ValidatorInterface;
 use Traversable;
 
+use function assert;
 use function class_exists;
+use function get_debug_type;
 use function gettype;
 use function is_array;
 use function is_callable;
@@ -156,7 +158,7 @@ class Factory
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable; received "%s"',
                 __METHOD__,
-                is_object($inputSpecification) ? $inputSpecification::class : gettype($inputSpecification)
+                get_debug_type($inputSpecification),
             ));
         }
 
@@ -304,9 +306,7 @@ class Factory
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable; received "%s"',
                 __METHOD__,
-                is_object($inputFilterSpecification)
-                    ? $inputFilterSpecification::class
-                    : gettype($inputFilterSpecification)
+                get_debug_type($inputFilterSpecification),
             ));
         }
 
@@ -318,6 +318,7 @@ class Factory
         }
 
         $inputFilter = $this->getInputFilterManager()->get($type);
+        assert($inputFilter instanceof InputFilterInterface); // As opposed to InputInterface
 
         if ($inputFilter instanceof CollectionInputFilter) {
             $inputFilter->setFactory($this);

@@ -7,6 +7,7 @@ namespace Laminas\Form\View\Helper;
 use Laminas\Escaper\Exception\RuntimeException as EscaperException;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception\InvalidArgumentException;
+use Laminas\Form\LabelAwareInterface;
 use Laminas\I18n\View\Helper\AbstractTranslatorHelper as BaseAbstractHelper;
 use Laminas\View\Helper\Doctype;
 use Laminas\View\Helper\EscapeHtml;
@@ -292,7 +293,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
     public function getId(ElementInterface $element): ?string
     {
         $id = $element->getAttribute('id');
-        if (null !== $id) {
+        if (is_string($id) && $id !== '') {
             return $id;
         }
 
@@ -557,5 +558,35 @@ abstract class AbstractHelper extends BaseAbstractHelper
         }
 
         return false;
+    }
+
+    /**
+     * Translate the label
+     *
+     * @internal
+     *
+     * @todo Reduce argument to only string in the next major
+     * @param string $label
+     */
+    protected function translateLabel(int|string|float|bool $label): string
+    {
+        $label = (string) $label;
+
+        return $this->getTranslator()?->translate($label, $this->getTranslatorTextDomain()) ?? $label;
+    }
+
+    /**
+     * escape the label
+     *
+     * @internal
+     */
+    protected function escapeLabel(ElementInterface $element, string $label): string
+    {
+        if ($element instanceof LabelAwareInterface && $element->getLabelOption('disable_html_escape')) {
+            return $label;
+        }
+
+        $escapeHtmlHelper = $this->getEscapeHtmlHelper();
+        return $escapeHtmlHelper($label);
     }
 }

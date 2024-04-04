@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Laminas\Form\Element;
 
 use DateTime as PhpDateTime;
+use DateTimeInterface;
 use Exception;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\FormInterface;
 use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\ValidatorInterface;
 
+use function array_merge;
 use function is_array;
 use function is_string;
 use function sprintf;
@@ -110,9 +112,20 @@ class DateTimeSelect extends DateSelect
         return $this->secondElement;
     }
 
+    /** @return list<Select> */
+    public function getElements(): array
+    {
+        return array_merge(parent::getElements(), [
+            $this->hourElement,
+            $this->minuteElement,
+            $this->secondElement,
+        ]);
+    }
+
     /**
      * Set the hour attributes
      *
+     * @param array<string, scalar|null> $hourAttributes
      * @return $this
      */
     public function setHourAttributes(array $hourAttributes)
@@ -124,7 +137,7 @@ class DateTimeSelect extends DateSelect
     /**
      * Get the hour attributes
      *
-     * @return array
+     * @return array<string, scalar|null>
      */
     public function getHourAttributes(): array
     {
@@ -134,6 +147,7 @@ class DateTimeSelect extends DateSelect
     /**
      * Set the minute attributes
      *
+     * @param array<string, scalar|null> $minuteAttributes
      * @return $this
      */
     public function setMinuteAttributes(array $minuteAttributes)
@@ -145,7 +159,7 @@ class DateTimeSelect extends DateSelect
     /**
      * Get the minute attributes
      *
-     * @return array
+     * @return array<string, scalar|null>
      */
     public function getMinuteAttributes(): array
     {
@@ -155,6 +169,7 @@ class DateTimeSelect extends DateSelect
     /**
      * Set the second attributes
      *
+     * @param array<string, scalar|null> $secondAttributes
      * @return $this
      */
     public function setSecondAttributes(array $secondAttributes)
@@ -166,7 +181,7 @@ class DateTimeSelect extends DateSelect
     /**
      * Get the second attributes
      *
-     * @return array
+     * @return array<string, scalar|null>
      */
     public function getSecondAttributes(): array
     {
@@ -209,7 +224,7 @@ class DateTimeSelect extends DateSelect
             $value = new PhpDateTime();
         }
 
-        if ($value instanceof PhpDateTime) {
+        if ($value instanceof DateTimeInterface) {
             $value = [
                 'year'   => $value->format('Y'),
                 'month'  => $value->format('m'),

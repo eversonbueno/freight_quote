@@ -7,6 +7,7 @@ namespace App\Handler;
 use App\Service\QuoteService;
 use Doctrine\ORM\EntityManager;
 use Laminas\EventManager\EventManager;
+use Laminas\ServiceManager\ServiceManager;
 use PhpParser\Node\Expr\New_;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -21,9 +22,11 @@ class MetricsHandlerFactory
      */
     public function __invoke(ContainerInterface $container) : RequestHandlerInterface
     {
+        $events = new EventManager();
+        $em = $container->get(EntityManager::class);
         $quoteService = $container->get(QuoteService::class);
 
-        return new MetricsHandler($quoteService);
+        return new MetricsHandler($events, $em, $quoteService);
 
     }
 }

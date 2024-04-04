@@ -30,6 +30,7 @@ use const DIRECTORY_SEPARATOR;
  *     mode?: 'gz'|'bz2'|null,
  * }
  * @extends AbstractCompressionAlgorithm<Options>
+ * @final
  */
 class Tar extends AbstractCompressionAlgorithm
 {
@@ -215,10 +216,10 @@ class Tar extends AbstractCompressionAlgorithm
      */
     public function decompress($content)
     {
-        $archive = $this->getArchive();
+        $archive = (string) $this->getArchive();
         if (file_exists($content)) {
             $archive = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, realpath($content));
-        } elseif (empty($archive) || ! file_exists($archive)) {
+        } elseif ($archive === '' || ! file_exists($archive)) {
             throw new Exception\RuntimeException('Tar Archive not found');
         }
 

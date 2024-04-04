@@ -9,6 +9,8 @@ use Laminas\Uri\Uri;
 use Laminas\Uri\UriFactory;
 use Traversable;
 
+use function assert;
+use function count;
 use function explode;
 use function is_scalar;
 use function str_contains;
@@ -21,6 +23,7 @@ use function str_contains;
  * }
  * @template TOptions of Options
  * @template-extends AbstractFilter<TOptions>
+ * @final
  */
 class UriNormalize extends AbstractFilter
 {
@@ -45,7 +48,7 @@ class UriNormalize extends AbstractFilter
      */
     public function __construct($options = null)
     {
-        if ($options) {
+        if ($options !== null) {
             $this->setOptions($options);
         }
     }
@@ -98,16 +101,16 @@ class UriNormalize extends AbstractFilter
         }
         $value = (string) $value;
 
-        $defaultScheme = $this->defaultScheme ?: $this->enforcedScheme;
+        $defaultScheme = $this->defaultScheme ?? $this->enforcedScheme;
 
         // Reset default scheme if it is not a known scheme
-        if (! UriFactory::getRegisteredSchemeClass($defaultScheme)) {
+        if (UriFactory::getRegisteredSchemeClass($defaultScheme) === null) {
             $defaultScheme = null;
         }
 
         try {
             $uri = UriFactory::factory($value, $defaultScheme);
-            if ($this->enforcedScheme && ! $uri->getScheme()) {
+            if ($this->enforcedScheme !== null && $uri->getScheme() === null) {
                 $this->enforceScheme($uri);
             }
         } catch (UriException) {
@@ -137,7 +140,9 @@ class UriNormalize extends AbstractFilter
         $path = $uri->getPath() ?? '';
 
         if (str_contains($path, '/')) {
-            [$host, $path] = explode('/', $path, 2);
+            $parts = explode('/', $path, 2);
+            assert(count($parts) >= 2);
+            [$host, $path] = $parts;
             $path          = '/' . $path;
         } else {
             $host = $path;

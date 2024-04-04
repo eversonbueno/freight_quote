@@ -17,6 +17,7 @@ use function is_string;
  *     ...
  * }
  * @extends AbstractFilter<Options>
+ * @final
  */
 class DateTimeFormatter extends AbstractFilter
 {
@@ -34,7 +35,7 @@ class DateTimeFormatter extends AbstractFilter
      */
     public function __construct($options = null)
     {
-        if ($options) {
+        if ($options !== null) {
             $this->setOptions($options);
         }
     }

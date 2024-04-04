@@ -25,6 +25,7 @@ use function strtolower;
  *     translations?: array,
  * }
  * @extends AbstractFilter<Options>
+ * @final
  */
 class Boolean extends AbstractFilter
 {
@@ -197,7 +198,7 @@ class Boolean extends AbstractFilter
      */
     public function getTranslations()
     {
-        return $this->options['translations'];
+        return $this->options['translations'] ?? [];
     }
 
     /**

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Laminas\Form\Element;
 
 use DateTime as PhpDateTime;
+use DateTimeInterface;
 use Exception;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\FormInterface;
@@ -63,7 +64,7 @@ class DateSelect extends MonthSelect
     /**
      * Get both the year and month elements
      *
-     * @return array
+     * @return list<Select>
      */
     public function getElements(): array
     {
@@ -73,6 +74,7 @@ class DateSelect extends MonthSelect
     /**
      * Set the day attributes
      *
+     * @param array<string, scalar|null> $dayAttributes
      * @return $this
      */
     public function setDayAttributes(array $dayAttributes)
@@ -84,7 +86,7 @@ class DateSelect extends MonthSelect
     /**
      * Get the day attributes
      *
-     * @return array
+     * @return array<string, scalar|null>
      */
     public function getDayAttributes(): array
     {
@@ -110,7 +112,7 @@ class DateSelect extends MonthSelect
             $value = new PhpDateTime();
         }
 
-        if ($value instanceof PhpDateTime) {
+        if ($value instanceof DateTimeInterface) {
             $value = [
                 'year'  => $value->format('Y'),
                 'month' => $value->format('m'),

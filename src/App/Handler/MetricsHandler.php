@@ -5,23 +5,28 @@ namespace App\Handler;
 
 
 use App\Service\QuoteService;
+use Doctrine\ORM\EntityManager;
 use Laminas\Diactoros\Response\JsonResponse;
+use Laminas\EventManager\EventManagerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Throwable;
 
-class MetricsHandler implements RequestHandlerInterface
+class MetricsHandler extends AbstractRequestHandler
 {
-    /** @var QuoteService */
     public QuoteService $quoteService;
 
     /**
      * MetricsHandler constructor.
-     * @param $quoteService
+     * @param EventManagerInterface $events
+     * @param EntityManager $em
+     * @param QuoteService $quoteService
      */
-    public function __construct($quoteService)
+    public function __construct(EventManagerInterface $events, EntityManager $em, QuoteService $quoteService)
     {
+        parent::__construct($events, $em);
+
         $this->quoteService = $quoteService;
 
     }
@@ -37,7 +42,7 @@ class MetricsHandler implements RequestHandlerInterface
 
 //            $data = \GuzzleHttp\json_decode($request->getBody(), true);
 
-            $requestService = $this->quoteService->search([]);
+            $requestService = $this->quoteService->search();
 
             return new JsonResponse(['data' => $request, 'response_body' => $requestService]);
         } catch (\Exception $e) {

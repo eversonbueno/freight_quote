@@ -4,21 +4,24 @@ declare(strict_types=1);
 
 namespace Laminas\Form\Element;
 
+use ArrayAccess;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\Fieldset;
 use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormInterface;
+use Laminas\Form\InputFilterProviderFieldset;
 use Laminas\Stdlib\ArrayUtils;
 use Laminas\Stdlib\Exception\InvalidArgumentException;
 use Traversable;
 
 use function assert;
+use function class_exists;
 use function count;
-use function gettype;
+use function get_debug_type;
 use function is_array;
 use function is_int;
-use function is_object;
+use function is_string;
 use function iterator_to_array;
 use function max;
 use function sprintf;
@@ -30,7 +33,7 @@ class Collection extends Fieldset
      */
     public const DEFAULT_TEMPLATE_PLACEHOLDER = '__index__';
 
-    /** @var array */
+    /** @var array|ArrayAccess */
     protected $object;
 
     /**
@@ -163,7 +166,7 @@ class Collection extends Fieldset
      * Set the object used by the hydrator
      * In this case the "object" is a collection of objects
      *
-     * @param  iterable $object
+     * @param iterable $object
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
@@ -175,7 +178,7 @@ class Collection extends Fieldset
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable object argument; received "%s"',
                 __METHOD__,
-                is_object($object) ? $object::class : gettype($object)
+                get_debug_type($object),
             ));
         }
 
@@ -325,7 +328,7 @@ class Collection extends Fieldset
                 '%s requires that $elementOrFieldset be an object implementing %s; received "%s"',
                 __METHOD__,
                 __NAMESPACE__ . '\ElementInterface',
-                is_object($elementOrFieldset) ? $elementOrFieldset::class : gettype($elementOrFieldset)
+                get_debug_type($elementOrFieldset),
             ));
         }
 
@@ -533,6 +536,12 @@ class Collection extends Fieldset
     protected function createNewTargetElementInstance(): ElementInterface
     {
         assert($this->targetElement !== null);
+        if ($this->targetElement instanceof InputFilterProviderFieldset) {
+            if (null !== ($type = $this->targetElement->getOption('target_type'))) {
+                assert(is_string($type) && class_exists($type));
+                $this->targetElement->setObject(new $type());
+            }
+        }
         return clone $this->targetElement;
     }
 
@@ -595,8 +604,8 @@ class Collection extends Fieldset
         }
 
         foreach ($fieldsets as $fieldset) {
-            $i = $fieldset->getName();
-            if (isset($this->object[$i])) {
+            $i = (string) $fieldset->getName();
+            if ($i !== '' && isset($this->object[$i])) {
                 $fieldset->setObject($this->object[$i]);
             }
         }

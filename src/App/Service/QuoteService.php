@@ -7,6 +7,7 @@ namespace App\Service;
 use App\Entity\Carrier;
 use App\Repository\CarrierRepository;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Exception\NotSupported;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
 use GuzzleHttp\Client;
@@ -167,14 +168,14 @@ class QuoteService
 
     /**
      * @throws \Throwable
-     * @throws \Doctrine\ORM\Exception\NotSupported
+     * @throws NotSupported
      */
-    public function search($params): array|int|string
+    public function search(): array|int|string
     {
         try {
             /** @var CarrierRepository $repository */
-            $repository = $this->em->getRepository(CarrierRepository::class);
-            return $repository->search($params);
+            $repository = $this->em->getRepository(Carrier::class);
+            return $repository->search();
         } catch (\Throwable $e) {
             throw $e;
         }

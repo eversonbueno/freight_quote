@@ -24,11 +24,12 @@ use const PHP_OS;
 
 /**
  * @psalm-type Options = array{
- *     exists?: bool,
+ *     exists: bool,
  *     ...
  * }
  * @template TOptions of Options
  * @extends AbstractFilter<TOptions>
+ * @final
  */
 class RealPath extends AbstractFilter
 {
@@ -38,7 +39,7 @@ class RealPath extends AbstractFilter
     ];
 
     /**
-     * @param  bool|Traversable $existsOrOptions Options to set
+     * @param  bool|Traversable|Options $existsOrOptions Options to set
      */
     public function __construct($existsOrOptions = true)
     {
@@ -100,7 +101,7 @@ class RealPath extends AbstractFilter
         ErrorHandler::start();
         $realpath = realpath($path);
         ErrorHandler::stop();
-        if ($realpath) {
+        if ($realpath !== false) {
             return $realpath;
         }
 

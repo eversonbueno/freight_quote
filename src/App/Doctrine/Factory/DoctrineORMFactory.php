@@ -10,36 +10,44 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
+use Doctrine\ORM\Tools\Setup;
 use Psr\Container\ContainerInterface;
 
 class DoctrineORMFactory
 {
     /**
-     * @param ContainerInterface $container
-     * @return EntityManager
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      * @throws ORMException
      */
     public function __invoke(ContainerInterface $container): EntityManager
     {
-        $appConfig = $container->get('config');
+        // Recuperar configurações do Doctrine do arquivo de configuração
+        $config = $container->get('config')['doctrine'];
 
-        if (!isset($appConfig['doctrine']['connection']['orm_default'])) {
+        if (!isset($config['connection']['orm_default'])) {
             throw new \RuntimeException("Missing doctrine connection config for orm_default driver");
         }
 
-        $config = new Configuration;
-        $config->setAutoGenerateProxyClasses($appConfig['doctrine']['connection']['orm']['auto_generate_proxy_classes'] ?: true);
-        $config->setProxyDir($appConfig['doctrine']['connection']['orm']['proxy_dir'] ?: '/tmp/freight_quote/cache/proxies');
-        $config->setProxyNamespace($appConfig['doctrine']['connection']['orm']['proxy_namespace'] ?: 'Api\Entity');
-        $config->setNamingStrategy(new UnderscoreNamingStrategy);
-        //AnnotationRegistry::registerFile(__DIR__ . '/../../../../vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
-        /** @var ClassLoader $loader */
-        $loader = require __DIR__.'/../../../../vendor/autoload.php';
-        AnnotationRegistry::registerLoader([$loader, 'loadClass']);
+        // Configurações de conexão com o banco de dados
+        $connectionParams = [
+            'driver'   => $config['connection']['orm_default']['params']['driver'],
+            'host'     => $config['connection']['orm_default']['params']['host'],
+            'dbname'   => $config['connection']['orm_default']['params']['dbname'],
+            'user'     => $config['connection']['orm_default']['params']['user'],
+            'password' => $config['connection']['orm_default']['params']['password'],
+        ];
 
-        $driver = new AnnotationDriver(new AnnotationReader(), [ __DIR__ . '/../../Entity' ]);
-        $config ->setMetadataDriverImpl($driver);
+        // Configurações do Doctrine ORM
+        $doctrineConfig = Setup::createAnnotationMetadataConfiguration(
+            $config['entity_paths'], // Paths para as entidades
+            $config['dev_mode'],     // Modo de desenvolvimento
+            null,                    // Proxy directory (opcional)
+            null,                    // Proxy namespace (opcional)
+            false                    // Auto-generate proxy classes (opcional)
+        );
 
-        return EntityManager::create($appConfig['doctrine']['connection']['orm_default'], $config);
+        // Cria e retorna o EntityManager
+        return EntityManager::create($connectionParams, $doctrineConfig);
     }
 }

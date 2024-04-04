@@ -161,6 +161,8 @@ class FormSelect extends AbstractHelper
         $optionStrings = [];
         $escapeHtml    = $this->getEscapeHtmlHelper();
 
+        $stringSelectedOptions = array_map('strval', $selectedOptions);
+
         foreach ($options as $key => $optionSpec) {
             $value    = '';
             $label    = '';
@@ -192,17 +194,11 @@ class FormSelect extends AbstractHelper
                 $disabled = $optionSpec['disabled'];
             }
 
-            $stringSelectedOptions = array_map('\\strval', $selectedOptions);
             if (ArrayUtils::inArray((string) $value, $stringSelectedOptions, true)) {
                 $selected = true;
             }
 
-            if (null !== ($translator = $this->getTranslator())) {
-                $label = $translator->translate(
-                    $label,
-                    $this->getTranslatorTextDomain()
-                );
-            }
+            $label = $this->translateLabel($label);
 
             $attributes = [
                 'value'    => $value,
@@ -301,14 +297,16 @@ class FormSelect extends AbstractHelper
 
     protected function getFormHiddenHelper(): FormHidden
     {
-        if (! $this->formHiddenHelper) {
-            if (method_exists($this->view, 'plugin')) {
-                $this->formHiddenHelper = $this->view->plugin('formhidden');
-            }
+        if (null !== $this->formHiddenHelper) {
+            return $this->formHiddenHelper;
+        }
 
-            if (! $this->formHiddenHelper instanceof FormHidden) {
-                $this->formHiddenHelper = new FormHidden();
-            }
+        if (null !== $this->view && method_exists($this->view, 'plugin')) {
+            $this->formHiddenHelper = $this->view->plugin('formhidden');
+        }
+
+        if (null === $this->formHiddenHelper) {
+            $this->formHiddenHelper = new FormHidden();
         }
 
         return $this->formHiddenHelper;

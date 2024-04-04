@@ -15,6 +15,8 @@ use function sprintf;
 
 /**
  * @psalm-import-type InputFilterSpecification from InputFilterInterface
+ * @template TFilteredValues
+ * @extends InputFilter<TFilteredValues>
  */
 class CollectionInputFilter extends InputFilter
 {
@@ -219,7 +221,7 @@ class CollectionInputFilter extends InputFilter
             $valid = false;
         }
 
-        if (! $this->data) {
+        if ($this->data === null) {
             $this->clearValues();
             $this->clearRawValues();
 
@@ -266,6 +268,7 @@ class CollectionInputFilter extends InputFilter
 
     /**
      * @return array<array-key, array>
+     * @psalm-return TFilteredValues
      */
     public function getValues()
     {
@@ -313,7 +316,7 @@ class CollectionInputFilter extends InputFilter
      */
     public function getUnknown()
     {
-        if (! $this->data) {
+        if ($this->data === null) {
             throw new Exception\RuntimeException(sprintf(
                 '%s: no data present!',
                 __METHOD__

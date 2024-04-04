@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Service\QuoteService;
+use Psr\Container\ContainerInterface;
+
 return [
     // Provides application-wide services.
     // We recommend using fully-qualified class names whenever possible as
