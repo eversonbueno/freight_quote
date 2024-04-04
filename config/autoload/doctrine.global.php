@@ -18,7 +18,7 @@ return [
                 'driver_class' => Driver::class,
                 'params' => [
                     'driver'   => 'pdo_mysql',
-                    'host'     => 'localhost',
+                    'host'     => 'freight_quote_mysql',
                     'port'     => 3306,
                     'user'     => 'root',
                     'password' => 'Angelica@1714',

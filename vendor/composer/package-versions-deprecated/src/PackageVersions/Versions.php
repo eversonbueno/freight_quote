@@ -167,7 +167,7 @@ final class Versions
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'symfony/process' => 'v6.4.4@710e27879e9be3395de2b98da3f52a946039f297',
   'theseer/tokenizer' => '1.2.3@737eda637ed5e28c3413cb1ebe8bb52cbf1ca7a2',
-  'mezzio/mezzio-skeleton' => 'dev-main@89fa86d25610a6414ceca0b630634b3f5c406263',
+  'mezzio/mezzio-skeleton' => 'dev-main@c38a28a0cbc07cb7b3fcdd060dfd4c72e319c3c0',
 );
 
     private function __construct()

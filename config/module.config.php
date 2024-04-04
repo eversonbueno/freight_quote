@@ -4,9 +4,6 @@ declare(strict_types=1);
 use Doctrine\ORM;
 use Doctrine\Migrations\Tools\Console\Command as DoctrineCommand;
 use Interop\Container\ContainerInterface;
-use Skar\LaminasDoctrineORM\Service;
-use Skar\LaminasDoctrineORM\Command;
-use Skar\Cache;
 
 return [
     'dependencies' => [
@@ -15,18 +12,18 @@ return [
                 return new Cache\Cache(new Cache\Storage\Adapter\Memory());
             },
 
-            ORM\EntityManager::class => Service\EntityManagerFactory::class,
+            ORM\EntityManager::class => \Service\EntityManagerFactory::class,
 
-            DoctrineCommand\DiffCommand::class       => Command\MigrationsCommandFactory::class,
-            DoctrineCommand\DumpSchemaCommand::class => Command\MigrationsCommandFactory::class,
-            DoctrineCommand\ExecuteCommand::class    => Command\MigrationsCommandFactory::class,
-            DoctrineCommand\GenerateCommand::class   => Command\MigrationsCommandFactory::class,
-            DoctrineCommand\LatestCommand::class     => Command\MigrationsCommandFactory::class,
-            DoctrineCommand\MigrateCommand::class    => Command\MigrationsCommandFactory::class,
-            DoctrineCommand\RollupCommand::class     => Command\MigrationsCommandFactory::class,
-            DoctrineCommand\StatusCommand::class     => Command\MigrationsCommandFactory::class,
-            DoctrineCommand\UpToDateCommand::class   => Command\MigrationsCommandFactory::class,
-            DoctrineCommand\VersionCommand::class    => Command\MigrationsCommandFactory::class,
+            DoctrineCommand\DiffCommand::class       => \Command\MigrationsCommandFactory::class,
+            DoctrineCommand\DumpSchemaCommand::class => \Command\MigrationsCommandFactory::class,
+            DoctrineCommand\ExecuteCommand::class    => \Command\MigrationsCommandFactory::class,
+            DoctrineCommand\GenerateCommand::class   => \Command\MigrationsCommandFactory::class,
+            DoctrineCommand\LatestCommand::class     => \Command\MigrationsCommandFactory::class,
+            DoctrineCommand\MigrateCommand::class    => \Command\MigrationsCommandFactory::class,
+            DoctrineCommand\RollupCommand::class     => \Command\MigrationsCommandFactory::class,
+            DoctrineCommand\StatusCommand::class     => \Command\MigrationsCommandFactory::class,
+            DoctrineCommand\UpToDateCommand::class   => \Command\MigrationsCommandFactory::class,
+            DoctrineCommand\VersionCommand::class    => \Command\MigrationsCommandFactory::class,
         ],
         'abstract_factories' => [
             Service\ServiceAbstractFactory::class,
